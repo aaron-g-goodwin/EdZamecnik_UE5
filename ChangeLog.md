@@ -8,6 +8,65 @@ tags:
 
 ## [Unreleased]
 
+# Friday 09.25.2026 - Monday 09.28.2026
+### 🟢 Added
+- Flight-path validation against room bounds, djinn clearance, and environmental obstacles.
+- Editor path previews and diagnostic rejection logs.
+- Varied launch-locked targets inside the player’s head and torso damage capsules.
+- Configurable minimum arc bend to reject overly straight trajectories.
+
+### 🟡 Changed
+- Migrated live fireballs to individually copied splines with swept movement and forward continuation after reaching the target.
+- Restored smooth quadratic arcs and tuned target spread for improved readability and deflection.
+- Preserved existing visual spin, audio, and hit handling.
+
+### 🔵 Fixed
+- Room-clearance calculations incorrectly mixing scaled and unscaled distances.
+- Launch-clearance failures through exclusion-capsule placement adjustments.
+- Invalid player-camera reference and incorrect planning-radius default.
+- Capsule-axis sampling and minimum-bend calculation wiring errors.
+
+# Friday 09.18.2026
+
+### 🟢 Added
+
+- Added randomized fireball launch and impact audio using Sound Cues.
+- Added looping spatial travel audio through `FlightAudio` in `BP_FireballProjectile`.
+- Added separate attenuation assets for launch, travel, impact, and plume audio.
+- Added looping crackling audio to the Djinn’s overhead plume.
+- Added per-launch victory-stone mesh selection matching the left and right held stones.
+- Added an opaque, emissive milky window pane to conceal the exterior behind the player.
+- Added a window spotlight aimed toward the main gameplay space.
+- Created project-owned `M_Room_Lit` from the Engine’s `M_Unlit` material.
+
+### 🟡 Changed
+
+- Reparented victory-stone launch points to `BP_VRPawn > Camera` and positioned them over the player’s shoulders.
+- Refined stone mesh sizes and normalized associated component scales to `1,1,1`.
+- Configured launch and impact cues to select variations randomly without replacement.
+- Connected launch and travel playback to the end of `InitializeCurvedFlight`.
+- Extended the existing guarded impact function to stop travel audio and play an independent impact sound before spawning visual effects.
+- Added explicit travel-audio cleanup to `Event Destroyed`.
+- Reparented the room’s material instances directly to `M_Room_Lit`, preserving their individual texture assignments.
+- Changed room shading from Unlit to Default Lit, routed surface color into Base Color, and added a rough surface response.
+- Disabled shadow casting on the Directional Light and milky window pane while retaining dynamic shadow casting on the room actors.
+
+### 🔵 Fixed
+
+- Fixed victory projectiles using outdated stone visuals.
+- Fixed room surfaces failing to respond to the new spotlight because their materials used unlit emissive shading.
+- Resolved unwanted bar-shaped shadows cast by the room geometry under the Directional Light.
+- Removed the unwanted shadow cast by the window-pane cube.
+
+### ⚪ Removed
+
+- Removed the redundant player-hit `SpawnImpactVFX` call with an unconnected impact location.
+
+### Production Notes
+
+- Confirmed that only deflections count toward victory; avoided or missed fireballs do not count. Existing gameplay behavior was retained.
+- Non-spatial win/loss audio cues are excluded from the current scope at the client’s request.
+- Dark hallway treatment, final lighting/audio balance, and held-stone victory/restart animations remain pending.
 
 # Friday 09.05.2026
 
