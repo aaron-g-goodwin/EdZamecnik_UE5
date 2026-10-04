@@ -6,7 +6,55 @@ tags:
 ---
 # Changelog - [[Edward Zamecnik - UE5.7 - VR]]
 
-## [Unreleased]
+## [Release Ready]
+
+# Friday 10.04.2026
+
+### 🟢 Added
+
+- Victory-stone wind-up animations with completion callbacks controlling each launch.
+- Smooth startup/restart stone lifts that follow the hands with world-down offsets.
+- Separate white-Djinn test material with adjustable whitening, body glow, and Fresnel rim glow.
+- Full-color variation retaining the new glow effects.
+
+### 🟡 Changed
+
+- Victory sequencing now waits for each wind-up before launching and hiding the corresponding held stone.
+- Disabled on-screen debug messages while retaining Output Log messages.
+- Restored TargetFireballCount from 5 to 111.
+- Increased fireball visual size without changing collision or planning radius.
+- Tuned heat distortion; its visibility remains subtle during fast flight.
+
+### 🔵 Verified
+
+- Stone presentation looks and functions correctly in playtesting.
+- Startup/restart lifts return stones to their normal hand positions.
+- Debug-message suppression, target-count update, and larger fireball visuals confirmed.
+
+### Pending Verification
+
+- DjinnGlowLight setup and final environmental-lighting balance.
+
+# Friday 10.02.2026 - Saturday 10.03.2026
+
+### 🟢 Added
+
+- Shuffled 1–3 shot bursts with randomized shot gaps and between-burst pauses.
+- Burst-dependent speed ranges: fast singles, medium-to-fast doubles, and slow-to-medium triples.
+- Consecutive-arc variation checks based on the last successfully launched shot.
+- Victory-stone handoff that hides and disables collision on each matching held stone.
+
+### 🟡 Changed
+
+- Flight duration now derives from spline length and selected speed.
+- Tuned MinArcVariation to 5.0 and increased planning to 22 candidate attempts per shot.
+- Failed launches end the current burst and schedule the next pause.
+
+### 🔵 Verified
+
+- Burst pacing and trajectory variation feel good in playtesting.
+- Win and loss stop further launches, including during bursts.
+- Held stones disappear left before right and return functional after level reload.
 
 # Friday 09.25.2026 - Monday 09.28.2026
 ### 🟢 Added
