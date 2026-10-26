@@ -10,6 +10,9 @@
 *.o
 *.obj
 
+# Unincorporated 3rd Party Content
+Content/Fab
+
 # Precompiled Headers
 *.gch
 *.pch
